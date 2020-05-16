@@ -48,6 +48,8 @@ func child() {
 	cmd.Stderr = os.Stderr
 
 	must(syscall.Sethostname([]byte("container")))
+	must(syscall.Chroot("/home/ramesh/container_root"))
+	must(os.Chdir("/"))
 	must(cmd.Run())
 
 }
