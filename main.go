@@ -50,6 +50,7 @@ func child() {
 	must(syscall.Sethostname([]byte("container")))
 	must(syscall.Chroot("/home/ramesh/container_root"))
 	must(os.Chdir("/"))
+	must(syscall.Mount("proc", "proc", "proc", 0, ""))
 	must(cmd.Run())
 
 }
