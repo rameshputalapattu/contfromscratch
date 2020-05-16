@@ -51,7 +51,10 @@ func child() {
 	must(syscall.Chroot("/home/ramesh/container_root"))
 	must(os.Chdir("/"))
 	must(syscall.Mount("proc", "proc", "proc", 0, ""))
+	must(syscall.Mount("something", "mytemp", "tempfs", 0, ""))
 	must(cmd.Run())
+	must(syscall.Unmount("proc", 0))
+	must(syscall.Unmount("mytemp", 0))
 
 }
 
